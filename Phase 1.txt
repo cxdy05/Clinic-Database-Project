@@ -1,0 +1,36 @@
+Phase 1:
+A list of entities with their key attributes:
+Patient
+    •   PatientID (Primary key)
+    •	FirstName
+    •	LastName
+    •	Email
+
+PhoneNumber
+    •	PhoneID (Primary key)
+    •	Number
+    •	PatientID (Foreign key)
+
+Appointment
+    •	AppointmentID (Primary key)
+    •	Date
+    •	Time
+    •	PatientID (Foreign key)
+    •	DentistID (Foreign key)
+
+DentalService
+    •	ServiceID (Primary key)
+    •	ProcedureName
+    •	Cost (x>0)
+
+Dentist
+    •	DentistID (Primary key)
+    •	FirstName
+    •	LastName
+    •	Specialization
+    •	Phone
+
+A short explanation (200-300 words) describing the decisions made in structuring the database:
+To model the clinic database, I identified the 5 core entities, including Patient, PhoneNumber, Appointment, DentalService, Dentist. The Patient entity includes basic personal details, hence storing each patient’s name and email. Since a single patient may have multiple phone numbers, I created and stored in a separate PhoneNumber entity to support a one to many (1..*) relationship between patients and their contact number/numbers. Each phone number is linked back to a single patient using the foreign key, PatientID. Appointments are modeled as their own entity, uniquely identified and scheduled at a specific date and time. Each appointment is associated with exactly one patient and one dentist, achieved by referencing to a Patient and a Dentist using the foreign keys, PatientID and DentistID. In addition, the Dentist entity includes a specialization field and their own contact. Furthermore, to represent the dental procedures available at the clinic, the DentalService entity is used, which has a procedure name, and a constraint ensuring the cost is strictly greater than zero. Multiple services/procedures can be performed in a single appointment, and the same service can appear across different appointments. This conceptual design ensures normalization and maintains integrity through the use of appropriate keys and relationships.
+
+
